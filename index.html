@@ -1,1 +1,201 @@
-"Hello World" 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rolikz Fabrics Slider</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            min-height: 100vh;
+            width: 100%;
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(image.jpg);
+            background-position: center;
+            background-size: cover;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            padding: 3% 6%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links ul li {
+            list-style: none;
+            display: inline-block;
+            padding: 8px 12px;
+        }
+
+        .nav-links ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .text-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .text-box h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .text-box p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Slider Styles */
+        .slider {
+            position: relative;
+            max-width: 80%;
+            margin: auto;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .slide h3 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #333;
+            color: white;
+        }
+
+        footer i {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="text-box">
+            <h1>Fashion should be a form of Escapism,<br> and not a form of Imprisonment</h1>
+            <p>Each Day a new Inspiration for designs</p>
+            <a href="#" class="hero-btn">Contact us to know more</a>
+        </div>
+    </section>
+
+    <section class="slider">
+        <div class="slides">
+            <div class="slide"><img src="C:\Users\tumise\Downloads\istockphoto-183217599-612x612.jpg" alt="Machine Needle"><h3>Machine Needle</h3></div>
+            <div class="slide"><img src="C:\Users\tumise\Pictures\0be7a4f0444e69cfeb10621ff82cb849.png" alt="Hand Needle"><h3>Hand Needle</h3></div>
+            <div class="slide"><img src="C:\Users\tumise\Downloads\linen-542866_640.jpg" alt="Linen"><h3>Linen</h3></div>
+            <div class="slide"><img src="path_to_image/ankara.jpg" alt="Ankara"><h3>Ankara</h3></div>
+            <div class="slide"><img src="path_to_image/native.jpg" alt="Native"><h3>Native</h3></div>
+            <div class="slide"><img src="path_to_image/safety_pins.jpg" alt="Safety Pins"><h3>Safety Pins</h3></div>
+            <div class="slide"><img src="path_to_image/thread.jpg" alt="Thread"><h3>Thread</h3></div>
+            <div class="slide"><img src="C:\Users\tumise\Downloads\colors-768691_640.jpg" alt="Chalk"><h3>Chalk</h3></div>
+            <div class="slide"><img src="C:\Users\tumise\Downloads\istockphoto-157529521-612x612.jpg" alt="Scissors"><h3>Scissors</h3></div>
+            <div class="slide"><img src="C:\Users\tumise\Downloads\istockphoto-872946008-612x612.jpg" alt="Seam Ripper"><h3>Seam Ripper</h3></div>
+        </div>
+        <div class="navigation">
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="class"> We are on
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-telegram"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-twitter"></i>
+        </div>
+        <p>Copyright &copy; 2023</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+
+        const slides = document.querySelector('.slides');
+        const slideCount = document.querySelectorAll('.slide').length;
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            currentSlide = (currentSlide > 0) ? currentSlide - 1 : slideCount - 1;
+            updateSlidePosition();
+        });
+
+        document.querySelector('.next').addEventListener('click', () => {
+            currentSlide = (currentSlide < slideCount - 1) ? currentSlide + 1 : 0;
+            updateSlidePosition();
+        });
+
+        function updateSlidePosition() {
+            slides.style.transform = translateX(-${currentSlide * 100}%);
+        }
+
+        // Optional: Auto-slide every 3 seconds
+        setInterval(() => {
+            currentSlide = (currentSlide < slideCount - 1) ? currentSlide + 1 : 0;
+            updateSlidePosition();
+        }, 3000);
+    </script>
+</body>
+</html>
